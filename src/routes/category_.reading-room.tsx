@@ -1,3 +1,4 @@
+import { CountrySelector } from "@/components/services/CountrySelector";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import capturedCSS from "../styles/pages/category.reading-room.css?raw";
@@ -102,7 +103,7 @@ function Index() {
                       <a href="/about-us">About Us</a>
                     </li>
                     <li className="menu-item">
-                      <a href="/our-services">Our Service’s</a>
+                      <a href="/services">Our Service’s</a>
                     </li>
                     <li className="menu-item">
                       <a href="/contact">Contact</a>
@@ -110,7 +111,8 @@ function Index() {
                     <li className="menu-item current-menu-item">
                       <a aria-current="page" href="#">Reading Room</a>
                     </li>
-                  </ul>
+                  <li className="menu-item nh-country-li"><CountrySelector /></li>
+</ul>
                 </div>
               </nav>
             </div>
@@ -155,7 +157,7 @@ function ImportedHeader({ menuOpen, onOpenMenu }: { menuOpen: boolean; onOpenMen
                                   <a href="/about-us">About Us</a>
                                 </li>
                                 <li className="menu-item" id="menu-item-3512">
-                                  <a href="/our-services">Our Service’s</a>
+                                  <a href="/services">Our Service’s</a>
                                 </li>
                                 <li className="menu-item" id="menu-item-4171">
                                   <a href="/contact">Contact</a>
@@ -163,7 +165,8 @@ function ImportedHeader({ menuOpen, onOpenMenu }: { menuOpen: boolean; onOpenMen
                                 <li className="menu-item current-menu-item" id="menu-item-4135">
                                   <a aria-current="page" href="#">Reading Room</a>
                                 </li>
-                              </ul>
+                              <li className="menu-item nh-country-li-mobile"><CountrySelector compact /></li>
+</ul>
                             </div>
                           </nav>
                         </div>
