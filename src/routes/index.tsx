@@ -1,3 +1,4 @@
+import { CountrySelector } from "@/components/services/CountrySelector";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import capturedCSS from "../styles/pages/index.css?raw";
@@ -49,6 +50,7 @@ function Index() {
                             <li className="menu-item">
                               <a className="wpr-menu-item wpr-pointer-item" href="/category/reading-room">Reading Room</a>
                             </li>
+                          <li className="menu-item nh-country-li"><CountrySelector /></li>
                           </ul>
                         </nav>
                         <nav className="wpr-mobile-nav-menu-container">
@@ -75,6 +77,7 @@ function Index() {
                             <li className="menu-item">
                               <a className="wpr-mobile-menu-item pl-[10px] pr-[10px] pt-[10px]" href="/category/reading-room">Reading Room</a>
                             </li>
+                          <li className="menu-item nh-country-li-mobile"><CountrySelector compact /></li>
                           </ul>
                         </nav>
                       </div>
