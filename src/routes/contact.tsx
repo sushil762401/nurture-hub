@@ -41,7 +41,7 @@ function Index() {
                               <a className="wpr-menu-item wpr-pointer-item" href="/about-us">About Us</a>
                             </li>
                             <li className="menu-item">
-                              <a className="wpr-menu-item wpr-pointer-item" href="/our-services">Our Service’s</a>
+                              <a className="wpr-menu-item wpr-pointer-item" href="/services">Our Service’s</a>
                             </li>
                             <li className="menu-item current-menu-item current_page_item">
                               <a className="wpr-menu-item wpr-pointer-item wpr-active-menu-item" aria-current="page" href="#">Contact</a>
@@ -67,7 +67,7 @@ function Index() {
                               <a className="wpr-mobile-menu-item pl-[10px] pr-[10px] pt-[10px]" href="/about-us">About Us</a>
                             </li>
                             <li className="menu-item">
-                              <a className="wpr-mobile-menu-item pl-[10px] pr-[10px] pt-[10px]" href="/our-services">Our Service’s</a>
+                              <a className="wpr-mobile-menu-item pl-[10px] pr-[10px] pt-[10px]" href="/services">Our Service’s</a>
                             </li>
                             <li className="menu-item current-menu-item current_page_item">
                               <a className="wpr-mobile-menu-item wpr-active-menu-item pl-[10px] pr-[10px] pt-[10px]" aria-current="page" href="#">Contact</a>
@@ -161,7 +161,7 @@ function Index() {
                           </div>
                           <div className="elementor-element elementor-element-d27a392 elementor-widget elementor-widget-heading [align-self:var(--align-self)] [order:var(--order)]">
                             <h2 className="elementor-heading-title elementor-size-default">
-                              <a href="/our-services">Our Services</a>
+                              <a href="/services">Our Services</a>
                             </h2>
                           </div>
                           <div className="elementor-element elementor-element-c5f8740 elementor-widget elementor-widget-heading [align-self:var(--align-self)] [order:var(--order)]">

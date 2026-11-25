@@ -102,7 +102,7 @@ function Index() {
                       <a href="/about-us">About Us</a>
                     </li>
                     <li className="menu-item">
-                      <a href="/our-services">Our Service’s</a>
+                      <a href="/services">Our Service’s</a>
                     </li>
                     <li className="menu-item">
                       <a href="/contact">Contact</a>
@@ -155,7 +155,7 @@ function ImportedHeader({ menuOpen, onOpenMenu }: { menuOpen: boolean; onOpenMen
                                   <a href="/about-us">About Us</a>
                                 </li>
                                 <li className="menu-item" id="menu-item-3512">
-                                  <a href="/our-services">Our Service’s</a>
+                                  <a href="/services">Our Service’s</a>
                                 </li>
                                 <li className="menu-item" id="menu-item-4171">
                                   <a href="/contact">Contact</a>
