@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import capturedCSS from "../styles/pages/category.reading-room.css?raw";
 
 export const Route = createFileRoute("/category_/reading-room")({
@@ -8,12 +9,13 @@ export const Route = createFileRoute("/category_/reading-room")({
 });
 
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <style>{capturedCSS}</style>
       <div className="site wp-site-blocks [overflow:clip]" id="wrapper">
         <a className={"screen-reader-text [&:focus]:[z-index:100000]"} href="#main">Skip to content</a>
-        <ImportedHeader />
+        <ImportedHeader menuOpen={menuOpen} onOpenMenu={() => setMenuOpen(true)} />
         <main className="wrap kt-clear" id="inner-wrap" role="main">
           <section className="entry-hero">
             <div className="entry-hero-container-inner">
@@ -82,11 +84,11 @@ function Index() {
           </div>
         </footer>
       </div>
-      <div className="popup-drawer popup-drawer-layout-sidepanel [z-index:99999]" id="mobile-drawer">
-        <div className="drawer-overlay" />
+      <div className={"popup-drawer popup-drawer-layout-sidepanel [z-index:99999]" + (menuOpen ? " show-drawer active" : "")} id="mobile-drawer" style={menuOpen ? { display: "block", opacity: 1, visibility: "visible" } : undefined} onKeyDown={(e) => { if (e.key === "Escape") setMenuOpen(false); }}>
+        <div className="drawer-overlay" onClick={() => setMenuOpen(false)} />
         <div className="drawer-inner flex-col [overflow:auto]">
           <div className="drawer-header justify-end">
-            <button className="drawer-toggle" aria-label="Close menu" aria-expanded="false" value="">{"\n\t\t\t\t\t"}<span className="toggle-close-bar ml-[-0.375em]" />{"\n\t\t\t\t\t"}<span className="toggle-close-bar ml-[-0.375em]" />{"\n\t\t\t\t"}</button>
+            <button className="drawer-toggle" aria-label="Close menu" aria-expanded={menuOpen} value="" onClick={() => setMenuOpen(false)}>{"\n\t\t\t\t\t"}<span className="toggle-close-bar ml-[-0.375em]" />{"\n\t\t\t\t\t"}<span className="toggle-close-bar ml-[-0.375em]" />{"\n\t\t\t\t"}</button>
           </div>
           <div className={"drawer-content \x63ontent-align-left \x63ontent-valign-top"}>
             <div className="site-header-item site-header-item-mobile-navigation items-center [margin-bottom:0px] [margin-right:0px]">
@@ -119,7 +121,7 @@ function Index() {
   );
 }
 
-function ImportedHeader() {
+function ImportedHeader({ menuOpen, onOpenMenu }: { menuOpen: boolean; onOpenMenu: () => void }) {
   return (
     <header className="[z-index:11]" id="masthead" role="banner" itemType="https://schema.org/WPHeader" itemScope>
       <div id="main-header">
@@ -196,7 +198,7 @@ function ImportedHeader() {
                       <div className="site-header-section justify-end">
                         <div className="site-header-item items-center [margin-right:0px]">
                           <div className="mobile-toggle-open-container">
-                            <button className="menu-toggle-open drawer-toggle menu-toggle-style-default items-center" id="mobile-toggle" aria-label="Open menu" aria-expanded="false">
+                            <button className="menu-toggle-open drawer-toggle menu-toggle-style-default items-center" id="mobile-toggle" aria-label="Open menu" aria-expanded={menuOpen} onClick={onOpenMenu}>
                               <span className="menu-toggle-icon">
                                 <span className="kadence-svg-iconset self-center">
                                   <svg className="kadence-svg-icon [overflow:hidden]" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" {...({ version: "1.1" } as any)}>
