@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "@tanstack/react-router";
+import css from "@/styles/pages/services-country.css?raw";
 import { COUNTRIES, COUNTRY_CODES, getStoredCountry, isCountryCode, storeCountry, type CountryCode } from "@/lib/services/countries";
 
 export function CountrySelector({ compact = false }: { compact?: boolean }) {
@@ -31,6 +32,7 @@ export function CountrySelector({ compact = false }: { compact?: boolean }) {
 
   return (
     <div ref={ref} className={`nh-cs ${compact ? "nh-cs--compact" : ""}`}>
+      <style>{css}</style>
       <button type="button" className="nh-cs__btn" aria-haspopup="listbox" aria-expanded={open} aria-label={`Country: ${c.name}. Change country`} onClick={() => setOpen((o) => !o)}>
         <span aria-hidden>{c.flag}</span>
         <span className="nh-cs__name">{compact ? c.name : c.code.toUpperCase()}</span>
