@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as OurServicesRouteImport } from './routes/our-services'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as CountryServicesRouteImport } from './routes/$country.services'
 import { Route as CategoryReadingRoomRouteImport } from './routes/category_.reading-room'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,6 +37,16 @@ const OurServicesRoute = OurServicesRouteImport.update({
   path: '/our-services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CountryServicesRoute = CountryServicesRouteImport.update({
+  id: '/$country/services',
+  path: '/$country/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoryReadingRoomRoute = CategoryReadingRoomRouteImport.update({
   id: '/category_/reading-room',
   path: '/category/reading-room',
@@ -46,6 +58,8 @@ export interface FileRoutesByFullPath {
   '/about-us': typeof AboutUsRoute
   '/contact': typeof ContactRoute
   '/our-services': typeof OurServicesRoute
+  '/services': typeof ServicesRoute
+  '/$country/services': typeof CountryServicesRoute
   '/category/reading-room': typeof CategoryReadingRoomRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +67,8 @@ export interface FileRoutesByTo {
   '/about-us': typeof AboutUsRoute
   '/contact': typeof ContactRoute
   '/our-services': typeof OurServicesRoute
+  '/services': typeof ServicesRoute
+  '/$country/services': typeof CountryServicesRoute
   '/category/reading-room': typeof CategoryReadingRoomRoute
 }
 export interface FileRoutesById {
@@ -61,21 +77,37 @@ export interface FileRoutesById {
   '/about-us': typeof AboutUsRoute
   '/contact': typeof ContactRoute
   '/our-services': typeof OurServicesRoute
+  '/services': typeof ServicesRoute
+  '/$country/services': typeof CountryServicesRoute
   '/category_/reading-room': typeof CategoryReadingRoomRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about-us' | '/contact' | '/our-services' | '/category/reading-room'
+    | '/'
+    | '/about-us'
+    | '/contact'
+    | '/our-services'
+    | '/services'
+    | '/$country/services'
+    | '/category/reading-room'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/about-us' | '/contact' | '/our-services' | '/category/reading-room'
+    | '/'
+    | '/about-us'
+    | '/contact'
+    | '/our-services'
+    | '/services'
+    | '/$country/services'
+    | '/category/reading-room'
   id:
     | '__root__'
     | '/'
     | '/about-us'
     | '/contact'
     | '/our-services'
+    | '/services'
+    | '/$country/services'
     | '/category_/reading-room'
   fileRoutesById: FileRoutesById
 }
@@ -84,6 +116,8 @@ export interface RootRouteChildren {
   AboutUsRoute: typeof AboutUsRoute
   ContactRoute: typeof ContactRoute
   OurServicesRoute: typeof OurServicesRoute
+  ServicesRoute: typeof ServicesRoute
+  CountryServicesRoute: typeof CountryServicesRoute
   CategoryReadingRoomRoute: typeof CategoryReadingRoomRoute
 }
 
@@ -117,6 +151,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OurServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$country/services': {
+      id: '/$country/services'
+      path: '/$country/services'
+      fullPath: '/$country/services'
+      preLoaderRoute: typeof CountryServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/category_/reading-room': {
       id: '/category_/reading-room'
       path: '/category/reading-room'
@@ -132,6 +180,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutUsRoute: AboutUsRoute,
   ContactRoute: ContactRoute,
   OurServicesRoute: OurServicesRoute,
+  ServicesRoute: ServicesRoute,
+  CountryServicesRoute: CountryServicesRoute,
   CategoryReadingRoomRoute: CategoryReadingRoomRoute,
 }
 export const routeTree = rootRouteImport
