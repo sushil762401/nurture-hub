@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import capturedCSS from "../styles/pages/contact.css?raw";
 
 export const Route = createFileRoute("/contact")({
@@ -8,6 +9,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <style>{capturedCSS}</style>
@@ -51,13 +53,13 @@ function Index() {
                         </nav>
                         <nav className="wpr-mobile-nav-menu-container">
                           <div className={"wpr-mobile-toggle-wrap [&]:text-center"}>
-                            <div className={"wpr-mobile-toggle [&]:text-center [cursor:pointer]"}>
+                            <div className={"wpr-mobile-toggle [&]:text-center [cursor:pointer]"} role="button" tabIndex={0} aria-label="Menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((o) => !o)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setMenuOpen((o) => !o); } if (e.key === "Escape") setMenuOpen(false); }}>
                               <span className="wpr-mobile-toggle-line mb-[4px]" />
                               <span className="wpr-mobile-toggle-line mb-[4px]" />
                               <span className="wpr-mobile-toggle-line [margin-bottom:0px]!" />
                             </div>
                           </div>
-                          <ul className={"wpr-mobile-nav-menu [&]:text-center [z-index:9999]"} style={{ width: "1536px", left: "-795.938px" }} id="mobile-menu-2-9545550" data-site-import-responsive="129">
+                          <ul className={"wpr-mobile-nav-menu [&]:text-center [z-index:9999]"} style={{ display: menuOpen ? "block" : "none", width: "100vw", position: "absolute", right: "-20px", left: "auto" }} id="mobile-menu-2-9545550" data-site-import-responsive="129">
                             <li className="menu-item">
                               <a className="wpr-mobile-menu-item pl-[10px] pr-[10px] pt-[10px]" href="/">Home</a>
                             </li>
