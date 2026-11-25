@@ -91,6 +91,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <>
+        <div className="elementor-element elementor-element-830f4ca e-con-full e-flex e-con e-parent e-lazyloaded [align-self:var(--align-self)] [order:var(--order)] [overflow:var(--overflow)] [text-align:var(--text-align)] [z-index:var(--z-index)]">
           <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
             <div className="elementor-widget-container">
               <div>
@@ -166,7 +167,6 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 }
