@@ -1,25 +1,23 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
-import { getStoredCountry, storeCountry, DEFAULT_COUNTRY, type CountryCode } from "@/lib/services/countries";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { getStoredCountry, type CountryCode } from "@/lib/services/countries";
+import { resolveCountry } from "@/lib/services/geo.functions";
 
-// Instant, offline guess from the browser's time zone (no network wait).
+// Instant offline guess from the browser's time zone (used only in the browser if nothing is saved).
 const TZ: Record<string, CountryCode> = {
   "Asia/Kolkata": "in", "Asia/Calcutta": "in", "Africa/Lagos": "ng", "Europe/London": "uk",
   "Europe/Berlin": "de", "Europe/Busingen": "de", "Asia/Kuala_Lumpur": "my", "Asia/Kuching": "my", "Asia/Singapore": "sg",
 };
 function guessFromTimeZone(): CountryCode | null {
-  try {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if (TZ[tz]) return TZ[tz];
-    // Ambiguous US/Canada zones: rely on IP lookup instead.
-    return null;
-  } catch { return null; }
+  try { return TZ[Intl.DateTimeFormat().resolvedOptions().timeZone] ?? null; } catch { return null; }
 }
-const withTimeout = <T,>(p: Promise<T>, ms: number) =>
-  Promise.race([p, new Promise<never>((_, r) => setTimeout(() => r(new Error("timeout")), ms))]);
-import { detectCountry } from "@/lib/services/geo.functions";
 
 export const Route = createFileRoute("/services")({
+  beforeLoad: async () => {
+    let code: CountryCode | null = null;
+    if (typeof window !== "undefined") code = getStoredCountry()?.code ?? guessFromTimeZone();
+    if (!code) code = await resolveCountry();
+    throw redirect({ to: "/$country/services", params: { country: code }, statusCode: 302, replace: true });
+  },
   head: () => ({
     meta: [
       { title: "Our Services | Nurture Hub Parenting Coaching" },
@@ -30,27 +28,4 @@ export const Route = createFileRoute("/services")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: ServicesRedirect,
 });
-
-function ServicesRedirect() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const stored = getStoredCountry();
-      let code = stored?.code ?? guessFromTimeZone() ?? undefined;
-      if (!code) {
-        try { code = (await withTimeout(detectCountry(), 1200)).country; } catch { code = DEFAULT_COUNTRY; }
-        storeCountry(code, false);
-      }
-      if (!cancelled) void navigate({ to: "/$country/services", params: { country: code }, replace: true });
-    })();
-    return () => { cancelled = true; };
-  }, [navigate]);
-  return (
-    <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", fontFamily: "DM Sans, sans-serif", color: "rgb(71, 93, 71)" }}>
-      Finding services for your country…
-    </div>
-  );
-}

@@ -4,14 +4,12 @@ import capturedCSS from "../styles/pages/our-services.css?raw";
 import svcCSS from "../styles/pages/services-country.css?raw";
 import { SiteFooter, SiteHeader } from "@/components/services/SiteChrome";
 import { ServicesPage } from "@/components/services/ServicesPage";
-import { COUNTRIES, COUNTRY_CODES, getStoredCountry, isCountryCode, storeCountry } from "@/lib/services/countries";
-import { getRequestOrigin } from "@/lib/services/geo.functions";
+import { COUNTRIES, COUNTRY_CODES, SITE_URL, getStoredCountry, isCountryCode, storeCountry } from "@/lib/services/countries";
 
 export const Route = createFileRoute("/$country/services")({
-  loader: async ({ params }) => {
+  loader: ({ params }) => {
     if (!isCountryCode(params.country)) throw notFound();
-    const origin = await getRequestOrigin();
-    return { code: params.country, origin };
+    return { code: params.country, origin: SITE_URL };
   },
   head: ({ loaderData }) => {
     if (!loaderData) return { meta: [{ title: "Services – Nurture Hub" }, { name: "robots", content: "noindex" }] };
