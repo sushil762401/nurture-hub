@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getRequestHeader } from "@tanstack/react-start/server";
+import { getRequest, getRequestHeader } from "@tanstack/react-start/server";
 import { countryFromIso, type CountryCode } from "./countries";
 
 // IP geolocation, isolated here so the provider can be swapped later.
@@ -23,9 +23,8 @@ export const detectCountry = createServerFn({ method: "GET" }).handler(async ():
 });
 
 export const getRequestOrigin = createServerFn({ method: "GET" }).handler(() => {
-  const url = new URL(getRequestHeader("x-forwarded-proto") ? `https://${getRequestHeader("host") ?? "localhost"}` : "http://localhost");
-  const fwd = getRequestHeader("x-forwarded-host");
-  const host = getRequestHeader("host");
-  if (fwd && (host ?? "").startsWith("localhost")) return `https://${fwd}`;
-  return host ? `${url.protocol}//${host}` : url.origin;
+  const req = getRequest();
+  const url = new URL(req.url);
+  const sandboxHost = url.hostname === "localhost" ? req.headers.get("x-forwarded-host") : null;
+  return sandboxHost ? `https://${sandboxHost}` : url.origin;
 });
