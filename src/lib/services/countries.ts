@@ -45,6 +45,21 @@ export interface Country {
   services: Service[] | null;
 }
 
+// Indicative PPP-based regular fee per country (fixed; never live exchange rates). Edit here to adjust.
+export const PRICING: Record<CountryCode, { currency: string; symbol: string; amount: number }> = {
+  in: { currency: "INR", symbol: "₹", amount: 5999 },
+  us: { currency: "USD", symbol: "$", amount: 299 },
+  ca: { currency: "CAD", symbol: "C$", amount: 379 },
+  ng: { currency: "NGN", symbol: "₦", amount: 96000 },
+  uk: { currency: "GBP", symbol: "£", amount: 209 },
+  de: { currency: "EUR", symbol: "€", amount: 219 },
+  my: { currency: "MYR", symbol: "RM", amount: 429 },
+  sg: { currency: "SGD", symbol: "S$", amount: 309 },
+};
+export function formatPrice(code: CountryCode, amount = PRICING[code].amount): string {
+  return PRICING[code].symbol + amount.toLocaleString("en-US");
+}
+
 const oneToOneIndia: Service = {
   id: "one-to-one-coaching",
   name: "One-to-One Coaching",
@@ -59,22 +74,26 @@ const oneToOneIndia: Service = {
   ],
   bonus: { title: "Bonus Follow-Up", text: "2 Free Follow-Up Sessions" },
   prices: [
-    { label: "First 3 Clients", amount: "₹3999" },
-    { label: "Regular fee", amount: "₹5999" },
+    { label: "First 3 Clients", amount: formatPrice("in", 3999) },
+    { label: "Regular fee", amount: formatPrice("in") },
   ],
   priceNote: "4 Sessions | Personalized Guidance · Complete package",
   cta: { label: "Start Your Journey", href: CALENDLY_URL },
 };
 
+function oneToOneFor(code: CountryCode): Service {
+  return { ...oneToOneIndia, prices: [{ label: "Complete package", amount: formatPrice(code) }] };
+}
+
 export const COUNTRIES: Record<CountryCode, Country> = {
   in: { code: "in", name: "India", flag: "🇮🇳", hreflang: "en-IN", services: [oneToOneIndia] },
-  us: { code: "us", name: "United States", flag: "🇺🇸", hreflang: "en-US", services: null },
-  ca: { code: "ca", name: "Canada", flag: "🇨🇦", hreflang: "en-CA", services: null },
-  ng: { code: "ng", name: "Nigeria", flag: "🇳🇬", hreflang: "en-NG", services: null },
-  uk: { code: "uk", name: "United Kingdom", flag: "🇬🇧", hreflang: "en-GB", services: null },
-  de: { code: "de", name: "Germany", flag: "🇩🇪", hreflang: "en-DE", services: null },
-  my: { code: "my", name: "Malaysia", flag: "🇲🇾", hreflang: "en-MY", services: null },
-  sg: { code: "sg", name: "Singapore", flag: "🇸🇬", hreflang: "en-SG", services: null },
+  us: { code: "us", name: "United States", flag: "🇺🇸", hreflang: "en-US", services: [oneToOneFor("us")] },
+  ca: { code: "ca", name: "Canada", flag: "🇨🇦", hreflang: "en-CA", services: [oneToOneFor("ca")] },
+  ng: { code: "ng", name: "Nigeria", flag: "🇳🇬", hreflang: "en-NG", services: [oneToOneFor("ng")] },
+  uk: { code: "uk", name: "United Kingdom", flag: "🇬🇧", hreflang: "en-GB", services: [oneToOneFor("uk")] },
+  de: { code: "de", name: "Germany", flag: "🇩🇪", hreflang: "en-DE", services: [oneToOneFor("de")] },
+  my: { code: "my", name: "Malaysia", flag: "🇲🇾", hreflang: "en-MY", services: [oneToOneFor("my")] },
+  sg: { code: "sg", name: "Singapore", flag: "🇸🇬", hreflang: "en-SG", services: [oneToOneFor("sg")] },
 };
 
 // From the original page: "Fees Available in international currency on request".
