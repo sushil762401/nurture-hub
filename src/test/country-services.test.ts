@@ -13,9 +13,10 @@ describe("country services rules", () => {
     expect(countryFromIso("GB")).toBe("uk");
   });
   it("shows India's confirmed fees", () => {
-    expect(COUNTRIES.in.services?.[0]?.prices?.map((p) => p.amount)).toEqual(["₹3999", "₹5999"]);
+    expect(COUNTRIES.in.services?.[0]?.prices?.map((p) => p.amount)).toEqual(["₹3,999", "₹5,999"]);
   });
-  it("does not list services as available in unconfirmed countries", () => {
-    for (const c of ["us", "ca", "ng", "uk", "de", "my", "sg"] as const) expect(COUNTRIES[c].services).toBeNull();
+  it("shows the configured PPP price per country, never rupees abroad", () => {
+    const want = { us: "$299", ca: "C$379", ng: "₦96,000", uk: "£209", de: "€219", my: "RM429", sg: "S$309" } as const;
+    for (const [c, v] of Object.entries(want)) expect(COUNTRIES[c as keyof typeof want].services?.[0]?.prices?.map((p) => p.amount)).toEqual([v]);
   });
 });
