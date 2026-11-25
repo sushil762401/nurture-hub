@@ -7,6 +7,7 @@ export const COUNTRY_CODES = ["in", "us", "ca", "ng", "uk", "de", "my", "sg"] as
 export type CountryCode = (typeof COUNTRY_CODES)[number];
 export const DEFAULT_COUNTRY: CountryCode = "in";
 
+export const SITE_URL = "https://nurturehub-sashi.in";
 export const CALENDLY_URL = "https://calendly.com/sashi-adler92/30min";
 
 export interface ServicePrice {
@@ -156,5 +157,8 @@ export function storeCountry(code: CountryCode, manual: boolean) {
   try {
     localStorage.setItem(KEY, code);
     if (manual) localStorage.setItem(MANUAL_KEY, "1");
+    const opts = "; path=/; max-age=31536000; samesite=lax";
+    document.cookie = `${KEY}=${code}${opts}`;
+    if (manual) document.cookie = `${MANUAL_KEY}=1${opts}`;
   } catch { /* ignore */ }
 }
