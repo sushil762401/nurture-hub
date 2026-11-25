@@ -13,7 +13,7 @@ export const detectCountry = createServerFn({ method: "GET" }).handler(async ():
   const ip = (getRequestHeader("cf-connecting-ip") ?? getRequestHeader("x-forwarded-for") ?? "").split(",")[0]?.trim();
   if (!ip) return { country: countryFromIso(null), source: "default" };
   try {
-    const res = await fetch(`https://ipapi.co/${encodeURIComponent(ip)}/country/`, { signal: AbortSignal.timeout(2500) });
+    const res = await fetch(`https://ipapi.co/${encodeURIComponent(ip)}/country/`, { signal: AbortSignal.timeout(1000) });
     if (res.ok) {
       const iso = (await res.text()).trim();
       if (/^[A-Z]{2}$/.test(iso)) return { country: countryFromIso(iso), source: "ipapi" };
