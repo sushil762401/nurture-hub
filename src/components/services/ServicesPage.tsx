@@ -93,7 +93,7 @@ export function ServicesPage({ country }: { country: Country }) {
             <p>Let's talk. Book a free 30-minute discovery call to explore what feels right for your family.</p>
             <div className="nh-actions">
               <a className="nh-btn" href={CALENDLY_URL} target="_blank" rel="noreferrer">Book Your Free Discovery Call</a>
-              <a className="nh-btn nh-btn--ghost" style={{ color: "#fff", borderColor: "#fff" }} href="/contact">Contact Us</a>
+              <a className="nh-btn nh-btn--ghost nh-btn--ghost-light" href="/contact">Contact Us</a>
               <WhatsAppCta label="Chat on WhatsApp" message={WHATSAPP_MESSAGES.services(country.name)} />
             </div>
           </div>
