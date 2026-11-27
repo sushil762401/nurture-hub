@@ -118,7 +118,6 @@ function Index() {
                     </span>
                   </a>
                 </div>
-                <WhatsAppCta label="WhatsApp Us" message={WHATSAPP_MESSAGES.discoveryCall} />
               </div>
             </div>
           </div>
