@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { CountrySelector } from "./CountrySelector";
+import { WhatsAppCta } from "@/components/WhatsApp";
+import { WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 
 /** Site header copied from the imported NurtureHub page, plus the country selector. */
 export function SiteHeader() {
@@ -147,6 +149,9 @@ export function SiteFooter() {
                               <span className="elementor-button-text [text-decoration:inherit]">Connect Today</span>
                             </span>
                           </a>
+                        </div>
+                        <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+                          <WhatsAppCta small label="WhatsApp" message={WHATSAPP_MESSAGES.general} />
                         </div>
                       </div>
                     </div>

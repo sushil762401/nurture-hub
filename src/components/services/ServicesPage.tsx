@@ -1,4 +1,6 @@
 import { CALENDLY_URL, COMING_SOON, INTERNATIONAL_FEE_NOTE, WHAT_TO_EXPECT, type Country } from "@/lib/services/countries";
+import { WhatsAppCta } from "@/components/WhatsApp";
+import { WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 
 export function ServicesPage({ country }: { country: Country }) {
   const services = country.services;
@@ -38,6 +40,7 @@ export function ServicesPage({ country }: { country: Country }) {
                     ))}
                     {s.priceNote && <p className="nh-note">{s.priceNote}</p>}
                     <a className="nh-btn" href={s.cta.href} target="_blank" rel="noreferrer">{s.cta.label}</a>
+                    <WhatsAppCta small block label="Chat on WhatsApp" message={WHATSAPP_MESSAGES.services(country.name)} />
                   </div>
                 </article>
               ))}
@@ -49,6 +52,7 @@ export function ServicesPage({ country }: { country: Country }) {
               <div className="nh-actions">
                 <a className="nh-btn" href={CALENDLY_URL} target="_blank" rel="noreferrer">Book a Free Discovery Call</a>
                 <a className="nh-btn nh-btn--ghost" href="/contact">Send an Enquiry</a>
+                <WhatsAppCta label="Chat on WhatsApp" message={WHATSAPP_MESSAGES.services(country.name)} />
               </div>
             </div>
           )}
@@ -90,6 +94,7 @@ export function ServicesPage({ country }: { country: Country }) {
             <div className="nh-actions">
               <a className="nh-btn" href={CALENDLY_URL} target="_blank" rel="noreferrer">Book Your Free Discovery Call</a>
               <a className="nh-btn nh-btn--ghost" style={{ color: "#fff", borderColor: "#fff" }} href="/contact">Contact Us</a>
+              <WhatsAppCta label="Chat on WhatsApp" message={WHATSAPP_MESSAGES.services(country.name)} />
             </div>
           </div>
         </div>
