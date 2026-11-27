@@ -1,4 +1,6 @@
 import { CountrySelector } from "@/components/services/CountrySelector";
+import { WhatsAppCta } from "@/components/WhatsApp";
+import { WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import capturedCSS from "../styles/pages/about-us.css?raw";
@@ -121,6 +123,9 @@ function Index() {
                   <span className="elementor-button-text [text-decoration:inherit]">Book a Free Discovery Call</span>
                 </span>
               </a>
+            </div>
+            <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+              <WhatsAppCta label="WhatsApp Us" message={WHATSAPP_MESSAGES.discoveryCall} small />
             </div>
           </div>
         </div>
@@ -264,6 +269,9 @@ function Index() {
               </span>
             </a>
           </div>
+          <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+            <WhatsAppCta label="Message Us on WhatsApp" message={WHATSAPP_MESSAGES.discoveryCall} />
+          </div>
         </div>
         <div className="elementor-element elementor-element-576c86a e-con-full e-flex e-con e-parent e-lazyloaded [align-self:var(--align-self)] [order:var(--order)] [overflow:var(--overflow)] [z-index:var(--z-index)]">
           <div className="bdt-element-link elementor-element elementor-element-bfdaa82 elementor-widget elementor-widget-template [align-self:var(--align-self)] [order:var(--order)] [cursor:pointer]">
@@ -321,6 +329,9 @@ function Index() {
                               <span className="elementor-button-text [text-decoration:inherit]">Connect Today</span>
                             </span>
                           </a>
+                        </div>
+                        <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+                          <WhatsAppCta small label="WhatsApp" message={WHATSAPP_MESSAGES.general} />
                         </div>
                       </div>
                     </div>

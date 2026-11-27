@@ -1,4 +1,6 @@
 import { CountrySelector } from "@/components/services/CountrySelector";
+import { WhatsAppCta } from "@/components/WhatsApp";
+import { WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import capturedCSS from "../styles/pages/index.css?raw";
@@ -116,6 +118,7 @@ function Index() {
                     </span>
                   </a>
                 </div>
+                <WhatsAppCta label="WhatsApp Us" message={WHATSAPP_MESSAGES.discoveryCall} />
               </div>
             </div>
           </div>
@@ -198,6 +201,7 @@ function Index() {
                 </span>
               </a>
             </div>
+            <WhatsAppCta label="WhatsApp Us" message={WHATSAPP_MESSAGES.discoveryCall} />
           </div>
         </div>
         <div className="elementor-element elementor-element-f8e3eb5 e-flex e-con-boxed e-con e-parent e-lazyloaded animated fadeInUp [align-self:var(--align-self)] [order:var(--order)] [overflow:var(--overflow)] [text-align:initial] [z-index:var(--z-index)]">
@@ -618,6 +622,9 @@ function Index() {
               </span>
             </a>
           </div>
+          <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+            <WhatsAppCta label="Message Us on WhatsApp" message={WHATSAPP_MESSAGES.discoveryCall} />
+          </div>
         </div>
         <div className="elementor-element elementor-element-50a635e e-con-full e-flex e-con e-parent e-lazyloaded [align-self:var(--align-self)] [order:var(--order)] [overflow:var(--overflow)] [text-align:var(--text-align)] [z-index:var(--z-index)]">
           <div className="bdt-element-link elementor-element elementor-element-260aa12 elementor-widget elementor-widget-template [align-self:var(--align-self)] [order:var(--order)] [cursor:pointer]">
@@ -675,6 +682,9 @@ function Index() {
                               <span className="elementor-button-text [text-decoration:inherit]">Connect Today</span>
                             </span>
                           </a>
+                        </div>
+                        <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+                          <WhatsAppCta small label="WhatsApp" message={WHATSAPP_MESSAGES.general} />
                         </div>
                       </div>
                     </div>
