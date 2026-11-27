@@ -1,4 +1,6 @@
 import { CountrySelector } from "@/components/services/CountrySelector";
+import { WhatsAppCta } from "@/components/WhatsApp";
+import { WHATSAPP_MESSAGES, WHATSAPP_NUMBER_DISPLAY, whatsappLink } from "@/lib/whatsapp";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import capturedCSS from "../styles/pages/contact.css?raw";
@@ -112,9 +114,16 @@ function Index() {
                   <h2 className="elementor-heading-title elementor-size-default">
                     <b>Phone:</b>
                     <br />
-                    <small>+91 9173880167</small>
+                    <small>
+                      <a href={whatsappLink(WHATSAPP_MESSAGES.general)} target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "underline" }}>
+                        {WHATSAPP_NUMBER_DISPLAY}
+                      </a>
+                    </small>
                   </h2>
                 </div>
+              </div>
+              <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+                <WhatsAppCta label="Message on WhatsApp" message={WHATSAPP_MESSAGES.general} small />
               </div>
             </div>
             <div className="elementor-element elementor-element-b5931b9 e-con-full e-flex e-con [align-self:var(--align-self)] [order:var(--order)] [overflow:var(--overflow)] [text-align:var(--text-align)] [z-index:var(--z-index)]">
@@ -128,6 +137,9 @@ function Index() {
       								Phone No.							</label><input className="elementor-field elementor-size-sm elementor-field-textual grow align-middle" type="number" name="form_fields[name]" id="form-field-name" placeholder="Phone No." required min="" max="" /></div><div className={"elementor-field-group elementor-column elementor-col-100 [&]:items-center flex-wrap mb-[10px] pl-[calc(5px)] pr-[calc(5px)]"}><label className="elementor-field-label [cursor:pointer]" htmlFor="form-field-email">
       								Email							</label><input className="elementor-field elementor-size-sm elementor-field-textual grow align-middle" type="email" name="form_fields[email]" id="form-field-email" placeholder="Email" required {...({ size: "1" } as any)} /></div><div className={"elementor-field-group elementor-column elementor-col-100 [&]:items-center flex-wrap mb-[10px] pl-[calc(5px)] pr-[calc(5px)]"}><label className="elementor-field-label [cursor:pointer]" htmlFor="form-field-message">
       								Message							</label><textarea className="elementor-field-textual elementor-field elementor-size-sm grow align-middle [overflow:auto]" name="form_fields[message]" id="form-field-message" rows={4} placeholder="Message" />				</div><div className="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons items-end flex-wrap mb-[10px] pl-[calc(5px)] pr-[calc(5px)]"><button className={"elementor-button elementor-size-sm [&]:text-center [flex-basis:100%]"} type="submit">{"\n\t\t\t\t\t\t"}<span className={"elementor-button-content-wrapper [&]:items-center flex-row gap-[5px] [&]:justify-center [text-decoration:inherit]"}>{"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}<span className="elementor-button-text whitespace-normal [text-decoration:inherit]">Send</span>{"\n\t\t\t\t\t\t\t\t\t\t\t\t\t"}</span>{"\n\t\t\t\t\t"}</button></div></div></form>
+              </div>
+              <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+                <WhatsAppCta label="Send this enquiry on WhatsApp" message={WHATSAPP_MESSAGES.enquiry} block />
               </div>
             </div>
           </div>
@@ -189,6 +201,9 @@ function Index() {
                                 <span className="elementor-button-text [text-decoration:inherit]">Connect Today</span>
                               </span>
                             </a>
+                          </div>
+                          <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
+                            <WhatsAppCta small label="WhatsApp" message={WHATSAPP_MESSAGES.general} />
                           </div>
                         </div>
                       </div>
