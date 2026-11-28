@@ -50,7 +50,7 @@ function CountryServices() {
       <style>{capturedCSS}</style>
       <style>{svcCSS}</style>
       <div className="elementor elementor-3341" data-elementor-id="3341">
-        <SiteHeader />
+        <SiteHeader active="services" />
         <ServicesPage country={COUNTRIES[code]} />
         <SiteFooter />
       </div>

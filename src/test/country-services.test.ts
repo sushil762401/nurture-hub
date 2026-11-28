@@ -12,11 +12,28 @@ describe("country services rules", () => {
   it("maps GB from geolocation to the uk page", () => {
     expect(countryFromIso("GB")).toBe("uk");
   });
-  it("shows India's confirmed fees", () => {
-    expect(COUNTRIES.in.services?.[0]?.prices?.map((p) => p.amount)).toEqual(["₹3,999", "₹5,999"]);
+  it("shows India's six-month journey fee", () => {
+    expect(COUNTRIES.in.services?.[0]?.prices?.map((p) => p.amount)).toEqual(["₹60,000"]);
   });
-  it("shows the configured PPP price per country, never rupees abroad", () => {
-    const want = { us: "$299", ca: "C$379", ng: "₦96,000", uk: "£209", de: "€219", my: "RM429", sg: "S$309" } as const;
-    for (const [c, v] of Object.entries(want)) expect(COUNTRIES[c as keyof typeof want].services?.[0]?.prices?.map((p) => p.amount)).toEqual([v]);
+  it("shows the configured six-month PPP fee per country, never rupees abroad", () => {
+    const want = {
+      us: "$2,990",
+      ca: "C$3,790",
+      ng: "₦960,000",
+      uk: "£2,090",
+      de: "€2,190",
+      my: "RM4,290",
+      sg: "S$3,090",
+    } as const;
+    for (const [c, v] of Object.entries(want))
+      expect(COUNTRIES[c as keyof typeof want].services?.[0]?.prices?.map((p) => p.amount)).toEqual(
+        [v],
+      );
+  });
+  it("offers the six-month journey in every country", () => {
+    for (const code of COUNTRY_CODES) {
+      expect(COUNTRIES[code].services?.[0]?.name).toBe("Conscious Parenting Journey");
+      expect(COUNTRIES[code].services?.[0]?.prices?.[0]?.label).toBe("Six-month programme");
+    }
   });
 });

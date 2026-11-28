@@ -4,6 +4,8 @@ import { WHATSAPP_MESSAGES, WHATSAPP_NUMBER_DISPLAY, whatsappLink } from "@/lib/
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import capturedCSS from "../styles/pages/contact.css?raw";
+import legacyThemeCSS from "../styles/pages/legacy-page-theme.css?raw";
+import { SiteFooter, SiteHeader } from "@/components/services/SiteChrome";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({ meta: [{ title: "Contact – nurturehub-sashi.in" }] }),
@@ -16,7 +18,10 @@ function Index() {
   return (
     <>
       <style>{capturedCSS}</style>
-      <div className="elementor elementor-4166" data-elementor-id="4166">
+      <style>{legacyThemeCSS}</style>
+      <div className="nh-legacy-page nh-legacy-page--contact">
+        <SiteHeader active="contact" />
+        <div className="elementor elementor-4166" data-elementor-id="4166">
         <div className="elementor-element elementor-element-aece91b e-con-full e-flex e-con e-parent e-lazyloaded [align-self:var(--align-self)] [order:var(--order)] [overflow:var(--overflow)] [text-align:var(--text-align)] [z-index:var(--z-index)]">
           <div className="elementor-element elementor-widget [align-self:var(--align-self)] [order:var(--order)]">
             <div className="elementor-widget-container">
@@ -49,9 +54,6 @@ function Index() {
                             <li className="menu-item current-menu-item current_page_item">
                               <a className="wpr-menu-item wpr-pointer-item wpr-active-menu-item" aria-current="page" href="#">Contact</a>
                             </li>
-                            <li className="menu-item">
-                              <a className="wpr-menu-item wpr-pointer-item" href="/category/reading-room">Reading Room</a>
-                            </li>
                           <li className="menu-item nh-country-li"><CountrySelector /></li>
                           </ul>
                         </nav>
@@ -75,9 +77,6 @@ function Index() {
                             </li>
                             <li className="menu-item current-menu-item current_page_item">
                               <a className="wpr-mobile-menu-item wpr-active-menu-item pl-[10px] pr-[10px] pt-[10px]" aria-current="page" href="#">Contact</a>
-                            </li>
-                            <li className="menu-item">
-                              <a className="wpr-mobile-menu-item pl-[10px] pr-[10px] pt-[10px]" href="/category/reading-room">Reading Room</a>
                             </li>
                           <li className="menu-item nh-country-li-mobile"><CountrySelector compact /></li>
                           </ul>
@@ -179,9 +178,6 @@ function Index() {
                               <a href="/services">Our Services</a>
                             </h2>
                           </div>
-                          <div className="elementor-element elementor-element-c5f8740 elementor-widget elementor-widget-heading [align-self:var(--align-self)] [order:var(--order)]">
-                            <h2 className="elementor-heading-title elementor-size-default">Reading Room</h2>
-                          </div>
                           <div className="elementor-element elementor-element-f98f92e elementor-widget elementor-widget-heading [align-self:var(--align-self)] [order:var(--order)]">
                             <h2 className="elementor-heading-title elementor-size-default">
                               <a href="/contact-us">Book a Call</a>
@@ -225,6 +221,8 @@ function Index() {
             </div>
           </div>
         </div>
+        </div>
+        <SiteFooter />
       </div>
       <span className="elementor-screen-only" id="elementor-device-mode" />
       <svg className="[overflow:hidden]" style={{ display: "none" }} />
